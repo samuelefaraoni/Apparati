@@ -10,14 +10,20 @@ APPARATI = {
 
 
 def aggiungi_apparato(codice: str, nome: str, bus: str, stato: str) -> bool:
-    stato_normalizzato = stato
+    stato_normalizzato = stato.upper()
 
+    if codice in APPARATI or stato_normalizzato not in STATI_AMMESSI:
+        return False
+    
     APPARATI[codice] = {"nome": nome, "bus": bus, "stato": stato_normalizzato}
     return True
 
 
 def aggiorna_stato(codice: str, stato: str) -> bool:
-    stato_normalizzato = stato
+    stato_normalizzato = stato.upper()
+
+    if codice in APPARATI or stato_normalizzato not in STATI_AMMESSI:
+            return False
     
     APPARATI[codice]["stato"] = stato_normalizzato
     return True
